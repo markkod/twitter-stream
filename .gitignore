@@ -1,2 +1,4 @@
-./checkpoint_TwitterApp
-./spark-warehouse
+/checkpoint_TwitterApp
+/checkpoint_twitter-stream-keywords
+/spark-warehouse
+/log

@@ -63,5 +63,5 @@ keyword_totals.foreachRDD(process_rdd)
 # start the streaming computation
 ssc.start()
 # wait for the streaming to finish
-ssc.awaitTermination()
+ssc.awaitTermination(60000)
 
