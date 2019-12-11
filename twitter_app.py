@@ -3,6 +3,7 @@ import sys
 import requests
 import requests_oauthlib
 import json
+import time
 
 ACCESS_TOKEN = '360823284-BzpFfTNoqwcVVNJAkyfD03h2qCyh5Z11BiAi9c9I'
 ACCESS_SECRET = 'W6CZIhxDXU1VQEVPDi3aPbkw3pM9aEr3S7N2WeQ6ktZlH'
@@ -11,13 +12,15 @@ CONSUMER_SECRET = 'VkWwsZskjcxDT5dkStQ9gDb2In8yiTP72uv1xzBLnOtfJw6ezF'
 my_auth = requests_oauthlib.OAuth1(
     CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_SECRET)
 
-keywords = 'arsenal, Arsenal, bournemouth, Bournemouth, aston villa, Aston Villa, Leicester, leicester, wolves, Wolves, Liverpool, liverpool, United, united, Manchester United, manchester united, manchester city, Manchester City,city, City, Newcastle, newcastle, Sheffield, sheffield, norwich, Norwich, Southampton, southampton,tottenham, Tottenham, Spurs, spurs, palace, Palace, Crystal Palace, crystal palace, Burnley, burnley,brighton, Brighton, Everton, everton, west ham, West Ham, chelsea, Chelsea'
+#keywords = 'arsenal, Arsenal, bournemouth, Bournemouth, aston villa, Aston Villa, Leicester, leicester, wolves, Wolves, Liverpool, liverpool, United, united, Manchester United, manchester united, manchester city, Manchester City,city, City, Newcastle, newcastle, Sheffield, sheffield, norwich, Norwich, Southampton, southampton,tottenham, Tottenham, Spurs, spurs, palace, Palace, Crystal Palace, crystal palace, Burnley, burnley,brighton, Brighton, Everton, everton, west ham, West Ham, chelsea, Chelsea'
+#('track', keywords)
 
+start_time = time.time()
+max_time = 10
 
 def get_tweets():
     url = 'https://stream.twitter.com/1.1/statuses/filter.json'
-    query_data = [('language', 'en'), ('locations',
-                                       '-12.176,49.565,1.784,59.33'), ('track', keywords)]
+    query_data = [('language', 'en'), ('locations', '-12.176,49.565,1.784,59.33')] # england coordinates
     query_url = url + '?' + \
         '&'.join([str(t[0]) + '=' + str(t[1]) for t in query_data])
     response = requests.get(query_url, auth=my_auth, stream=True)
@@ -50,4 +53,3 @@ conn, addr = s.accept()
 print("Connected... Starting getting tweets.")
 resp = get_tweets()
 send_tweets_to_spark(resp, conn)
-
