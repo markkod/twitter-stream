@@ -12,11 +12,7 @@ CONSUMER_SECRET = 'VkWwsZskjcxDT5dkStQ9gDb2In8yiTP72uv1xzBLnOtfJw6ezF'
 my_auth = requests_oauthlib.OAuth1(
     CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_SECRET)
 
-#keywords = 'arsenal, Arsenal, bournemouth, Bournemouth, aston villa, Aston Villa, Leicester, leicester, wolves, Wolves, Liverpool, liverpool, United, united, Manchester United, manchester united, manchester city, Manchester City,city, City, Newcastle, newcastle, Sheffield, sheffield, norwich, Norwich, Southampton, southampton,tottenham, Tottenham, Spurs, spurs, palace, Palace, Crystal Palace, crystal palace, Burnley, burnley,brighton, Brighton, Everton, everton, west ham, West Ham, chelsea, Chelsea'
-#('track', keywords)
-
-start_time = time.time()
-max_time = 10
+#SOURCE: https://www.toptal.com/apache/apache-spark-streaming-twitter
 
 def get_tweets():
     url = 'https://stream.twitter.com/1.1/statuses/filter.json'
